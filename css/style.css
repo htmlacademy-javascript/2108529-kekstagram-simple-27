@@ -674,12 +674,16 @@ main {
   */
 
 .text {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   margin-bottom: 30px;
 
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border: none;
+
+  width: fit-content;
 }
 
 .text__hashtags {
@@ -710,7 +714,20 @@ main {
   border-radius: 5px;
 }
 
+.form__error {
+  display: block;
+  color: red;
+  text-transform: none;
+}
 
+.symbols-count {
+  text-transform: none;
+  align-self: flex-start
+}
+
+.symbols-count--invalid {
+  color: red;
+}
 /**
   * Кнопка для отправки изображения
   */

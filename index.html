@@ -20,7 +20,7 @@
       <section class="img-upload">
         <div class="img-upload__wrapper">
           <h2 class="img-upload__title  visually-hidden">Загрузка фотографии</h2>
-          <form class="img-upload__form" id="upload-select-image" method="post" enctype="multipart/form-data" autocomplete="off">
+          <form class="img-upload__form" id="upload-select-image" method="post" enctype="multipart/form-data" autocomplete="off" action="https://27.javascript.pages.academy/kekstagram-simple">
 
             <!-- Изначальное состояние поля для загрузки изображения -->
             <fieldset class="img-upload__start">
@@ -29,7 +29,7 @@
             </fieldset>
 
             <!-- Форма редактирования изображения -->
-            <div class="img-upload__overlay  hidden">
+            <div class="img-upload__overlay hidden">
               <div class="img-upload__wrapper">
                 <div class="img-upload__preview-container">
 
@@ -105,7 +105,10 @@
 
                 <!-- Добавление комментария к изображению -->
                 <fieldset class="img-upload__text text">
-                    <textarea class="text__description" name="description" placeholder="Ваш комментарий..."></textarea>
+                  <span class="symbols-count">Введено символов: <output></output></span>
+                    <textarea class="text__description" name="description" placeholder="Ваш комментарий..." required
+                    data-pristine-required-message="Добавьте комментарий"
+                    ></textarea>
                 </fieldset>
 
                 <!-- Кнопка для отправки данных на сервер -->
@@ -165,6 +168,7 @@
     </section>
   </template>
 
+  <script src="./vendor/pristine/pristine.min.js"></script>
   <script src="js/main.js" type="module"></script>
 </body>
 </html>
