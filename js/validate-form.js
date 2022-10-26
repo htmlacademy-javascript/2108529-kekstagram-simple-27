@@ -28,7 +28,7 @@ pristine.addValidator(commentField, validateComment, `от ${minCommentLength} �
 // Обработчик ввода в поле комментария
 function onCommentFieldChange() {
   commentSymbolsCount.querySelector('output').textContent = commentField.value.length;
-  commentSymbolsCount.classList.remove('form__error');
+  commentSymbolsCount.classList.remove('symbols-count--invalid');
   removeErrorMessage();
 }
 commentField.addEventListener('input', onCommentFieldChange);
