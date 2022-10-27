@@ -13,6 +13,18 @@ const getRandomPositiveInteger = (a, b) => {
 }
 
 // Проверка длины строки
-const checkStringLength = (string, length) => string.length <= length;
+const checkStringLength = (string, minLength, maxLength) => string.length >= minLength && string.length <= maxLength;
 
-export {getRandomPositiveInteger}
+// Блокируем скролл
+const lockScroll = () => document.body.classList.add('modal-open');
+
+// Разблокируем скролл
+const unlockScroll = () => document.body.classList.remove('modal-open');
+
+// Проверка что нажат esc
+const isEscKey = evt => evt.key === 'Escape';
+
+// Функция для очистки поля
+const clearField = (field) => field.value = '';
+
+export { getRandomPositiveInteger, lockScroll, unlockScroll, isEscKey, checkStringLength, clearField }

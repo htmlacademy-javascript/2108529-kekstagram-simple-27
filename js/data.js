@@ -12,5 +12,6 @@ const createPost = (index) => ({
 });
 
 const createPosts = () => Array.from({ length: postsAmount }, (_, post) => createPost(post + 1));
+const createdPosts = createPosts();
 
-export {createPosts};
+export {createdPosts};
