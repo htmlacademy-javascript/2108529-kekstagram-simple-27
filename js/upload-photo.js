@@ -52,4 +52,4 @@ function onModalEscKeydown(evt) {
 
 photoUploadInput.addEventListener('change', onPhotoUploadInputChange);
 
-export { removeErrorMessage }
+export { removeErrorMessage, onModalEscKeydown }

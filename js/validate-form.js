@@ -1,5 +1,5 @@
 import { checkStringLength } from './util.js';
-import { removeErrorMessage } from './upload-photo.js';
+import { removeErrorMessage, onModalEscKeydown } from './upload-photo.js';
 
 import {
   photoUploadForm,
@@ -32,6 +32,10 @@ function onCommentFieldChange() {
   removeErrorMessage();
 }
 commentField.addEventListener('input', onCommentFieldChange);
+
+// Отключаем esc при фокусе в поле комментария
+commentField.onfocus = () => document.removeEventListener('keydown', onModalEscKeydown);
+commentField.onblur = () => document.addEventListener('keydown', onModalEscKeydown);
 
 // Отправка формы
 photoUploadForm.addEventListener('submit', (evt) => {
