@@ -35,7 +35,7 @@ function onPhotoUploadCancelClick() {
   photoUploadModal.classList.add('hidden');
   photoUploadCancel.removeEventListener('click', onPhotoUploadCancelClick);
   document.removeEventListener('keydown', onModalEscKeydown);
-  photoUploadInput.value = '';
+  clearField(photoUploadInput);
   unlockScroll();
 }
 
@@ -45,7 +45,7 @@ function onModalEscKeydown(evt) {
     photoUploadModal.classList.add('hidden');
     photoUploadCancel.removeEventListener('click', onPhotoUploadCancelClick);
     document.removeEventListener('keydown', onModalEscKeydown);
-    photoUploadInput.value = '';
+    clearField(photoUploadInput);
     unlockScroll();
   }
 }

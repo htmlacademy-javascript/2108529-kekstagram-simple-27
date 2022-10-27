@@ -728,12 +728,16 @@ main {
 .symbols-count--invalid {
   color: red;
 }
+
 /**
   * Кнопка для отправки изображения
   */
 
 .img-upload__submit {
   padding: 10px 20px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 40px;
 
   color: #ffe753;
   text-align: center;
