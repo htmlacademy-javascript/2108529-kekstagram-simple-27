@@ -17,7 +17,7 @@ const clearCommentSymbolsCount = () => {
 const removeErrorMessage = () => {
   const errorMessage = photoUploadModal.querySelector('.form__error');
   if (errorMessage) {
-    hideElement(errorMessage);
+    resetElement(errorMessage);
   }
 }
 
@@ -56,4 +56,4 @@ function onModalEscKeydown(evt) {
 
 photoUploadInput.addEventListener('change', onPhotoUploadInputChange);
 
-export { removeErrorMessage, onModalEscKeydown }
+export { onModalEscKeydown }

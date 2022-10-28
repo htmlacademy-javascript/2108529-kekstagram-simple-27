@@ -725,10 +725,6 @@ main {
   align-self: flex-start
 }
 
-.symbols-count--invalid {
-  color: red;
-}
-
 /**
   * Кнопка для отправки изображения
   */

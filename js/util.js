@@ -26,11 +26,11 @@ const isEscKey = evt => evt.key === 'Escape';
 
 // Сбросить значения элемента
 const resetElement = (elem) => {
-  if (elem.textContent) {
-    elem.textContent = '';
+  if (elem.value) {
+    elem.value = '';
     return
   }
-  elem.value = '';
+  elem.innerHTML = '';
 }
 
 //  Скрыть элемент
