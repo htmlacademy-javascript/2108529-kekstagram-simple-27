@@ -3,50 +3,54 @@ import {
   photoUploadModal,
   photoUploadCancel,
   commentSymbolsCount,
-  commentField
+  commentField,
+  commentSymbolsCountOutput
 } from "./dom-elements.js";
 
-import { lockScroll, unlockScroll, isEscKey, clearField } from './util.js';
+import { lockScroll, unlockScroll, isEscKey, resetElement, hideElement, showElement } from './util.js';
 
 const clearCommentSymbolsCount = () => {
   commentSymbolsCount.classList.remove('symbols-count--invalid');
-  commentSymbolsCount.querySelector('output').textContent = '';
+  resetElement(commentSymbolsCountOutput);
 }
 
 const removeErrorMessage = () => {
   const errorMessage = photoUploadModal.querySelector('.form__error');
   if (errorMessage) {
-    errorMessage.style.display = 'none';
+    hideElement(errorMessage);
   }
 }
 
 function onPhotoUploadInputChange() {
-  photoUploadModal.classList.remove('hidden');
+  showElement(photoUploadModal);
   photoUploadCancel.addEventListener('click', onPhotoUploadCancelClick);
   document.addEventListener('keydown', onModalEscKeydown);
 
   clearCommentSymbolsCount();
   removeErrorMessage();
-  clearField(commentField);
+  resetElement(commentField);
   lockScroll();
 }
 
 function onPhotoUploadCancelClick() {
-  photoUploadModal.classList.add('hidden');
+  hideElement(photoUploadModal);
+  resetElement(photoUploadInput);
+  unlockScroll();
+
   photoUploadCancel.removeEventListener('click', onPhotoUploadCancelClick);
   document.removeEventListener('keydown', onModalEscKeydown);
-  clearField(photoUploadInput);
-  unlockScroll();
 }
 
 function onModalEscKeydown(evt) {
   if (isEscKey(evt)) {
     evt.preventDefault();
-    photoUploadModal.classList.add('hidden');
+
+    hideElement(photoUploadModal)
+    resetElement(photoUploadInput);
+    unlockScroll();
+
     photoUploadCancel.removeEventListener('click', onPhotoUploadCancelClick);
     document.removeEventListener('keydown', onModalEscKeydown);
-    clearField(photoUploadInput);
-    unlockScroll();
   }
 }
 

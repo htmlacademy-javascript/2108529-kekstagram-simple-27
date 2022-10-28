@@ -5,7 +5,8 @@ const picturesContainer = document.querySelector('.pictures'),
   photoUploadCancel = photoUploadModal.querySelector('#upload-cancel'),
   photoUploadForm = picturesContainer.querySelector('.img-upload__form'),
   commentField = photoUploadForm.querySelector('.text__description'),
-  commentSymbolsCount = photoUploadForm.querySelector('.symbols-count');
+  commentSymbolsCount = photoUploadForm.querySelector('.symbols-count'),
+  commentSymbolsCountOutput = commentSymbolsCount.querySelector('.symbols-count__output');
 
 export {
   picturesContainer,
@@ -15,5 +16,6 @@ export {
   photoUploadCancel,
   photoUploadForm,
   commentField,
-  commentSymbolsCount
+  commentSymbolsCount,
+  commentSymbolsCountOutput
 }

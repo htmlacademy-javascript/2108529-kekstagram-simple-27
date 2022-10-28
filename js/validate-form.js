@@ -4,7 +4,8 @@ import { removeErrorMessage, onModalEscKeydown } from './upload-photo.js';
 import {
   photoUploadForm,
   commentField,
-  commentSymbolsCount
+  commentSymbolsCount,
+  commentSymbolsCountOutput
 } from './dom-elements.js';
 
 // вопрос: как в пристине обращаться в classTo к любому элементу, а не только первой вложенности в валидируемой форме и почему если убрать этот параметр то следующие не будут работать?
@@ -26,7 +27,7 @@ pristine.addValidator(commentField, validateComment, `от ${MIN_COMMENT_LENGTH}
 
 // Обработчик ввода в поле комментария
 function onCommentFieldChange() {
-  commentSymbolsCount.querySelector('output').textContent = commentField.value.length;
+  commentSymbolsCountOutput.textContent = commentField.value.length;
   commentSymbolsCount.classList.remove('symbols-count--invalid');
   removeErrorMessage();
 }
