@@ -5,7 +5,15 @@ const picturesContainer = document.querySelector('.pictures'),
   photoUploadCancel = photoUploadModal.querySelector('#upload-cancel'),
   photoUploadForm = picturesContainer.querySelector('.img-upload__form'),
   commentField = photoUploadForm.querySelector('.text__description'),
-  commentSymbolsCount = photoUploadForm.querySelector('.symbols-count');
+  commentSymbolsCount = photoUploadForm.querySelector('.symbols-count'),
+  commentSymbolsCountOutput = commentSymbolsCount.querySelector('.symbols-count__output'),
+  imagePreview = photoUploadModal.querySelector('.img-upload__preview img'),
+  imageScaleControl = photoUploadModal.querySelector('.scale__control--value'),
+  imageScaleSmaller = photoUploadModal.querySelector('.scale__control--smaller'),
+  imageScaleBigger = photoUploadModal.querySelector('.scale__control--bigger'),
+  photoEffectsList = photoUploadModal.querySelector('.effects__list'),
+  effectLevelSlider = photoUploadModal.querySelector('.effect-level__slider'),
+  effectLevelValue = photoUploadModal.querySelector('.effect-level__value');
 
 export {
   picturesContainer,
@@ -15,5 +23,13 @@ export {
   photoUploadCancel,
   photoUploadForm,
   commentField,
-  commentSymbolsCount
+  commentSymbolsCount,
+  commentSymbolsCountOutput,
+  imagePreview,
+  imageScaleControl,
+  imageScaleSmaller,
+  imageScaleBigger,
+  photoEffectsList,
+  effectLevelSlider,
+  effectLevelValue
 }

@@ -1,7 +1,7 @@
-import {getRandomPositiveInteger} from './util.js'
+import { getRandomPositiveInteger } from './util.js'
 
 // Создаем посты
-let postsAmount = 25;
+const POSTS_AMOUNT = 25;
 
 const createPost = (index) => ({
   id: index,
@@ -11,7 +11,16 @@ const createPost = (index) => ({
   comments: getRandomPositiveInteger(0, 200)
 });
 
-const createPosts = () => Array.from({ length: postsAmount }, (_, post) => createPost(post + 1));
+const createPosts = () => Array.from({ length: POSTS_AMOUNT }, (_, post) => createPost(post + 1));
 const createdPosts = createPosts();
 
-export {createdPosts};
+const photoEffects = {
+  'effect-none': ['effects__preview--none'],
+  'effect-chrome': ['effects__preview--chrome', 'grayscale'],
+  'effect-sepia': ['effects__preview--sepia', 'sepia'],
+  'effect-marvin': ['effects__preview--marvin', 'invert'],
+  'effect-phobos': ['effects__preview--phobos', 'blur'],
+  'effect-heat': ['effects__preview--heat', 'brightness']
+}
+
+export { createdPosts, photoEffects };

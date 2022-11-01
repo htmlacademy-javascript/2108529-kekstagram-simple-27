@@ -24,7 +24,33 @@ const unlockScroll = () => document.body.classList.remove('modal-open');
 // Проверка что нажат esc
 const isEscKey = evt => evt.key === 'Escape';
 
-// Функция для очистки поля
-const clearField = (field) => field.value = '';
+// Сбросить значения элемента
+const resetElement = (elem) => {
+  if (elem.value) {
+    elem.value = '';
+    return
+  }
+  elem.innerHTML = '';
+}
 
-export { getRandomPositiveInteger, lockScroll, unlockScroll, isEscKey, checkStringLength, clearField }
+//  Скрыть элемент
+const hideElement = elem => elem.classList.add('hidden');
+
+// Показать элемент
+const showElement = elem => elem.classList.remove('hidden');
+
+const disableElement = elem => elem.setAttribute('disabled', true);
+const enableElement = elem => elem.removeAttribute('disabled');
+
+export {
+  getRandomPositiveInteger,
+  lockScroll,
+  unlockScroll,
+  isEscKey,
+  checkStringLength,
+  resetElement,
+  hideElement,
+  showElement,
+  disableElement,
+  enableElement
+}

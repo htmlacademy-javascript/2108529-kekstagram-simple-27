@@ -391,6 +391,7 @@ main {
 .img-upload__preview-container {
   position: relative;
   margin-bottom: 30px;
+
 }
 
 
@@ -513,7 +514,7 @@ main {
   width: 600px;
   height: 600px;
 
-  background-color: #ffffff;
+  background-color: transparent;
 }
 
 .img-upload__preview img {
@@ -723,10 +724,6 @@ main {
 .symbols-count {
   text-transform: none;
   align-self: flex-start
-}
-
-.symbols-count--invalid {
-  color: red;
 }
 
 /**
