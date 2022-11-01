@@ -39,6 +39,8 @@ const hideElement = elem => elem.classList.add('hidden');
 // Показать элемент
 const showElement = elem => elem.classList.remove('hidden');
 
+const disableElement = elem => elem.setAttribute('disabled', true);
+const enableElement = elem => elem.removeAttribute('disabled');
 
 export {
   getRandomPositiveInteger,
@@ -48,5 +50,7 @@ export {
   checkStringLength,
   resetElement,
   hideElement,
-  showElement
+  showElement,
+  disableElement,
+  enableElement
 }

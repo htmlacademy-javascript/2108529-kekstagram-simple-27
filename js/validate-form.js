@@ -19,9 +19,7 @@ const  MIN_COMMENT_LENGTH = 20;
 const  MAX_COMMENT_LENGTH = 140;
 
 // Валидация поля ввода комментария
-function validateComment(value) {
-  return checkStringLength(value, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH);
-}
+const validateComment = value => checkStringLength(value, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH);
 pristine.addValidator(commentField, validateComment, `от ${MIN_COMMENT_LENGTH} до ${MAX_COMMENT_LENGTH} символов`);
 
 // Обработчик ввода в поле комментария
@@ -38,5 +36,3 @@ photoUploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
   }
 });
-
-
