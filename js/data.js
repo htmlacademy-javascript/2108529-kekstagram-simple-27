@@ -3,6 +3,8 @@ import { getRandomPositiveInteger } from './util.js'
 // Создаем посты
 const POSTS_AMOUNT = 25;
 
+const empty = '';
+
 const createPost = (index) => ({
   id: index,
   url: `photos/${index}.jpg`,
@@ -23,4 +25,4 @@ const photoEffects = {
   'effect-heat': ['effects__preview--heat', 'brightness']
 }
 
-export { createdPosts, photoEffects };
+export { createdPosts, photoEffects, empty };
