@@ -1,20 +1,22 @@
-import { getRandomPositiveInteger } from './util.js'
-
-// Создаем посты
-const POSTS_AMOUNT = 25;
+// import { getRandomPositiveInteger } from './util.js'
 
 const empty = '';
 
-const createPost = (index) => ({
-  id: index,
-  url: `photos/${index}.jpg`,
-  description: 'chillin',
-  likes: getRandomPositiveInteger(15, 200),
-  comments: getRandomPositiveInteger(0, 200)
-});
 
-const createPosts = () => Array.from({ length: POSTS_AMOUNT }, (_, post) => createPost(post + 1));
-const createdPosts = createPosts();
+// Создаем посты
+// const POSTS_AMOUNT = 25;
+
+
+// const createPost = (index) => ({
+//   id: index,
+//   url: `photos/${index}.jpg`,
+//   description: 'chillin',
+//   likes: getRandomPositiveInteger(15, 200),
+//   comments: getRandomPositiveInteger(0, 200)
+// });
+
+// const createPosts = () => Array.from({ length: POSTS_AMOUNT }, (_, post) => createPost(post + 1));
+// const createdPosts = createPosts();
 
 const photoEffects = {
   'effect-none': ['effects__preview--none'],
@@ -25,4 +27,4 @@ const photoEffects = {
   'effect-heat': ['effects__preview--heat', 'brightness']
 }
 
-export { createdPosts, photoEffects, empty };
+export { empty, photoEffects };

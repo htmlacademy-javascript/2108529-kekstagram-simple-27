@@ -1,12 +1,13 @@
-import { checkStringLength } from './util.js';
+import { checkStringLength, blockSubmitButton } from './util.js';
 import { onModalEscKeydown } from './upload-photo.js';
 
 import {
   photoUploadForm,
   commentField,
-  commentSymbolsCount,
   commentSymbolsCountOutput
 } from './dom-elements.js';
+
+import { sendData } from './api.js';
 
 const pristine = new Pristine(photoUploadForm, {
   classTo: 'img-upload__text',
@@ -15,8 +16,8 @@ const pristine = new Pristine(photoUploadForm, {
   errorTextClass: 'form__error'
 });
 
-const  MIN_COMMENT_LENGTH = 20;
-const  MAX_COMMENT_LENGTH = 140;
+const MIN_COMMENT_LENGTH = 20;
+const MAX_COMMENT_LENGTH = 140;
 
 // Валидация поля ввода комментария
 const validateComment = value => checkStringLength(value, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH);
@@ -32,7 +33,10 @@ commentField.onblur = () => document.addEventListener('keydown', onModalEscKeydo
 
 // Отправка формы
 photoUploadForm.addEventListener('submit', (evt) => {
-  if (!pristine.validate()) {
-    evt.preventDefault();
+  evt.preventDefault();
+  if (pristine.validate()) {
+    const formData = new FormData(evt.target);
+    sendData(formData);
+    blockSubmitButton();
   }
 });

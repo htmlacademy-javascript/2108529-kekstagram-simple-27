@@ -7,7 +7,8 @@ import {
   commentSymbolsCountOutput,
   imagePreview,
   effectLevelSlider,
-  photoEffectsList
+  photoEffectsList,
+  imageScaleControl
 } from "./dom-elements.js";
 
 import {
@@ -16,7 +17,8 @@ import {
   isEscKey,
   resetElement,
   hideElement,
-  showElement
+  showElement,
+  unlockSubmitButton
 } from './util.js';
 
 import { empty } from "./data.js";
@@ -31,12 +33,14 @@ const clearEffects = () => {
   for (let effect of effects) {
     if (effect.matches('#effect-none')) {
       effect.setAttribute('checked', true);
+
     } else {
-      effect.removeAttribute('checked')
+      effect.removeAttribute('checked');
     }
   }
   imagePreview.style.filter = empty;
   imagePreview.className = empty;
+  imagePreview.style.transform = empty;
 }
 
 const removeErrorMessage = () => {
@@ -46,19 +50,26 @@ const removeErrorMessage = () => {
   }
 }
 
-function onPhotoUploadInputChange() {
-  showElement(photoUploadModal);
-  photoUploadCancel.addEventListener('click', onPhotoUploadCancelClick);
-  document.addEventListener('keydown', onModalEscKeydown);
-
+const resetPhotoUploadWindow = () => {
+  clearEffects();
   hideElement(effectLevelSlider);
   clearCommentSymbolsCount();
   removeErrorMessage();
   resetElement(commentField);
+  imageScaleControl.value = '100%';
+}
+
+function onPhotoUploadInputChange() {
+
+  showElement(photoUploadModal);
+  unlockSubmitButton();
   lockScroll();
 
-  // Сброс наложенных ранее фильтров
-  clearEffects();
+  photoUploadCancel.addEventListener('click', onPhotoUploadCancelClick);
+  document.addEventListener('keydown', onModalEscKeydown);
+
+  // Сброс сброс всех предыдущих изменений
+  resetPhotoUploadWindow();
 }
 
 function onPhotoUploadCancelClick() {
@@ -85,4 +96,4 @@ function onModalEscKeydown(evt) {
 
 photoUploadInput.addEventListener('change', onPhotoUploadInputChange);
 
-export { onModalEscKeydown }
+export { onModalEscKeydown, onPhotoUploadCancelClick }
