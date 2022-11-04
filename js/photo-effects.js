@@ -1,5 +1,5 @@
 import { imagePreview, photoEffectsList, effectLevelSlider, effectLevelValue } from './dom-elements.js';
-import { photoEffects } from './data.js' ;
+import { empty, photoEffects } from './data.js' ;
 import { hideElement, showElement } from './util.js';
 
 
@@ -105,7 +105,7 @@ photoEffectsList.addEventListener('change', (evt) => {
 
     // Оригинал
     if (evt.target.matches('#effect-none')) {
-      imagePreview.style.filter = '';
+      imagePreview.style.filter = empty;
       hideElement(effectLevelSlider);
     } else {
       showElement(effectLevelSlider);

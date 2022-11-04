@@ -1,3 +1,6 @@
+import { errorMessageTemplate, successMessageTemplate, submitButton } from './dom-elements.js';
+import { onPhotoUploadCancelClick } from './upload-photo.js';
+
 // Генерация случайного целого положительного числа
 const getRandomPositiveInteger = (a, b) => {
   if (a < 0 || b < 0) {
@@ -42,6 +45,39 @@ const showElement = elem => elem.classList.remove('hidden');
 const disableElement = elem => elem.setAttribute('disabled', true);
 const enableElement = elem => elem.removeAttribute('disabled');
 
+// Показ сообщения об ошибке при загрузке/отправке данных
+const showErrorMessage = (message) => {
+  const errorMessage = errorMessageTemplate.cloneNode(true);
+  const errorWindowButton = errorMessage.querySelector('.error__button');
+  errorMessage.querySelector('.error__title').textContent = message;
+  errorWindowButton.addEventListener('click', () => {
+    errorMessage.remove();
+  });
+  document.body.append(errorMessage);
+  onPhotoUploadCancelClick();
+}
+
+// Показ сообщения об успешной отправке данных
+const showSuccessMessage = () => {
+  const successMessage = successMessageTemplate.cloneNode(true);
+  const successWindowButton = successMessage.querySelector('.success__button');
+  successWindowButton.addEventListener('click', () => {
+    successMessage.remove();
+  });
+  document.body.append(successMessage);
+  onPhotoUploadCancelClick();
+}
+
+const blockSubmitButton = () => {
+  submitButton.setAttribute('disabled', true);
+  submitButton.textContent = 'Отправляю...';
+}
+
+const unlockSubmitButton = () => {
+  submitButton.removeAttribute('disabled');
+  submitButton.textContent = 'Отправить';
+}
+
 export {
   getRandomPositiveInteger,
   lockScroll,
@@ -52,5 +88,9 @@ export {
   hideElement,
   showElement,
   disableElement,
-  enableElement
+  enableElement,
+  showErrorMessage,
+  showSuccessMessage,
+  blockSubmitButton,
+  unlockSubmitButton
 }

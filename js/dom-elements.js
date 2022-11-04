@@ -13,7 +13,10 @@ const picturesContainer = document.querySelector('.pictures'),
   imageScaleBigger = photoUploadModal.querySelector('.scale__control--bigger'),
   photoEffectsList = photoUploadModal.querySelector('.effects__list'),
   effectLevelSlider = photoUploadModal.querySelector('.effect-level__slider'),
-  effectLevelValue = photoUploadModal.querySelector('.effect-level__value');
+  effectLevelValue = photoUploadModal.querySelector('.effect-level__value'),
+  errorMessageTemplate = document.querySelector('#error').content.querySelector('.error'),
+  successMessageTemplate = document.querySelector('#success').content.querySelector('.success'),
+  submitButton = photoUploadForm.querySelector('.img-upload__submit');
 
 export {
   picturesContainer,
@@ -31,5 +34,8 @@ export {
   imageScaleBigger,
   photoEffectsList,
   effectLevelSlider,
-  effectLevelValue
+  effectLevelValue,
+  errorMessageTemplate,
+  successMessageTemplate,
+  submitButton
 }

@@ -1,5 +1,4 @@
 import { picturesContainer, pictureTemplate } from './dom-elements.js';
-import { createdPosts } from './data.js'
 
 const createPicture = ({ url, comments, likes }) => {
   const picture = pictureTemplate.cloneNode(true);
@@ -18,4 +17,4 @@ const renderPictures = (posts) => {
   picturesContainer.append(picturesGalleryFragment);
 }
 
-renderPictures(createdPosts);
+export { renderPictures }
