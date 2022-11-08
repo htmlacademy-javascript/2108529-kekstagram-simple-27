@@ -24,7 +24,9 @@ const validateComment = (value) => checkStringLength(value, MIN_COMMENT_LENGTH, 
 pristine.addValidator(commentField, validateComment, `от ${MIN_COMMENT_LENGTH} до ${MAX_COMMENT_LENGTH} символов`);
 
 // Обработчик ввода в поле комментария
-const onCommentFieldChange = () => commentSymbolsCountOutput.textContent = commentField.value.length;
+const onCommentFieldChange = () => {
+  commentSymbolsCountOutput.textContent = commentField.value.length;
+};
 
 commentField.addEventListener('input', onCommentFieldChange);
 

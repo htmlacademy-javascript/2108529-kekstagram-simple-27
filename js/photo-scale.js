@@ -13,10 +13,16 @@ const MAX_SCALE = 1;
 
 let scaleValue = MAX_SCALE;
 
-const resetScaleValue = () => scaleValue = MAX_SCALE;
+const resetScaleValue = () => {
+  scaleValue = MAX_SCALE;
+};
 
-const setControlValue = () => imageScaleControl.value = `${scaleValue * 100 }%`;
-const setImageScale = () => imagePreview.style.transform = `scale(${imageScaleControl.value})`;
+const setControlValue = () => {
+  imageScaleControl.value = `${scaleValue * 100 }%`;
+};
+const setImageScale = () => {
+  imagePreview.style.transform = `scale(${imageScaleControl.value})`;
+};
 
 imageScaleSmaller.addEventListener('click', () => {
   scaleValue -= SCALE_STEP;
