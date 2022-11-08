@@ -6,10 +6,11 @@ import {
   commentField,
   commentSymbolsCountOutput,
   imagePreview,
-  effectLevelSlider,
   photoEffectsList,
-  imageScaleControl
-} from "./dom-elements.js";
+  effectLevelField,
+  imageScaleSmaller,
+  imageScaleBigger
+} from './dom-elements.js';
 
 import {
   lockScroll,
@@ -18,19 +19,23 @@ import {
   resetElement,
   hideElement,
   showElement,
-  unlockSubmitButton
+  unlockSubmitButton,
+  enableElement,
+  disableElement
 } from './util.js';
 
-import { empty } from "./data.js";
+import { EMPTY } from './data.js';
+
+import { resetScaleValue, setControlValue } from './photo-scale.js';
 
 const clearCommentSymbolsCount = () => {
   commentSymbolsCount.classList.remove('symbols-count--invalid');
   resetElement(commentSymbolsCountOutput);
-}
+};
 
 const clearEffects = () => {
   const effects = photoEffectsList.querySelectorAll('.effects__radio');
-  for (let effect of effects) {
+  for (const effect of effects) {
     if (effect.matches('#effect-none')) {
       effect.setAttribute('checked', true);
 
@@ -38,28 +43,36 @@ const clearEffects = () => {
       effect.removeAttribute('checked');
     }
   }
-  imagePreview.style.filter = empty;
-  imagePreview.className = empty;
-  imagePreview.style.transform = empty;
-}
+  imagePreview.style.filter = EMPTY;
+  imagePreview.className = EMPTY;
+  imagePreview.style.transform = EMPTY;
+};
 
 const removeErrorMessage = () => {
   const errorMessage = photoUploadModal.querySelector('.form__error');
   if (errorMessage) {
     resetElement(errorMessage);
   }
-}
+};
 
+// Сброс сброс всех предыдущих изменений
 const resetPhotoUploadWindow = () => {
   clearEffects();
-  hideElement(effectLevelSlider);
+  hideElement(effectLevelField);
   clearCommentSymbolsCount();
   removeErrorMessage();
   resetElement(commentField);
-  imageScaleControl.value = '100%';
-}
+  resetScaleValue();
+  setControlValue();
+  enableElement(imageScaleSmaller);
+  disableElement(imageScaleBigger)
+};
 
 function onPhotoUploadInputChange() {
+
+  //Подставляем выбранное изображение в окно редактирования
+  const url = URL.createObjectURL(photoUploadInput.files[0]);
+  imagePreview.src = url;
 
   showElement(photoUploadModal);
   unlockSubmitButton();
@@ -67,8 +80,6 @@ function onPhotoUploadInputChange() {
 
   photoUploadCancel.addEventListener('click', onPhotoUploadCancelClick);
   document.addEventListener('keydown', onModalEscKeydown);
-
-  // Сброс сброс всех предыдущих изменений
   resetPhotoUploadWindow();
 }
 
@@ -85,7 +96,7 @@ function onModalEscKeydown(evt) {
   if (isEscKey(evt)) {
     evt.preventDefault();
 
-    hideElement(photoUploadModal)
+    hideElement(photoUploadModal);
     resetElement(photoUploadInput);
     unlockScroll();
 
@@ -96,4 +107,4 @@ function onModalEscKeydown(evt) {
 
 photoUploadInput.addEventListener('change', onPhotoUploadInputChange);
 
-export { onModalEscKeydown, onPhotoUploadCancelClick }
+export { onModalEscKeydown, onPhotoUploadCancelClick };

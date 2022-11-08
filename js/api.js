@@ -1,32 +1,30 @@
-import { renderPictures } from './rendering-gallery.js';
-import { showErrorMessage, showSuccessMessage } from './util.js';
+import { showErrorMessage, showSuccessMessage, reloadPage } from './util.js';
 
-const getData = () => {
-  fetch('https://27.javascript.pages.academy/kekstagram-simple/data')
-    .then(response => response.json())
-    .then(posts => renderPictures(posts))
-    .catch(() => {
-      showErrorMessage('Ошибка при загрузке данных с сервера');
-    });
-}
+const getData = async () => {
+  const response = await fetch('https://27.javascript.pages.academy/kekstagram-simple/data');
+  if (response.ok) {
+    return await response.json();
+  }
+  showErrorMessage('Ошибка при загрузке данных с сервера', reloadPage);
+};
 
 const sendData = (body) => {
   fetch('https://27.javascript.pages.academy/kekstagram-simple',
     {
       method: 'POST',
-      body: body
+      body
     },
   )
     .then((response) => {
       if (response.ok) {
         showSuccessMessage();
-      } else {
-        showErrorMessage('Не удалось отправить форму');
+        return
       }
+      showErrorMessage('Не удалось отправить форму', false, true);
     })
     .catch(() => {
-      showErrorMessage('Не удалось отправить форму');
+      showErrorMessage('Не удалось отправить форму', false, true);
     });
-}
+};
 
-export { getData, sendData }
+export { getData, sendData };
