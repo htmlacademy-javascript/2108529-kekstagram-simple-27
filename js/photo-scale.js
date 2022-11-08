@@ -38,4 +38,4 @@ imageScaleBigger.addEventListener('click', () => {
   setImageScale();
 });
 
-export { resetScaleValue, setControlValue,  };
+export { resetScaleValue, setControlValue };

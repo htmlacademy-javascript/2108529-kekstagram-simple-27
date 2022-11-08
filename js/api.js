@@ -18,7 +18,7 @@ const sendData = (body) => {
     .then((response) => {
       if (response.ok) {
         showSuccessMessage();
-        return
+        return;
       }
       showErrorMessage('Не удалось отправить форму', false, true);
     })

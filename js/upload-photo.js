@@ -65,7 +65,7 @@ const resetPhotoUploadWindow = () => {
   resetScaleValue();
   setControlValue();
   enableElement(imageScaleSmaller);
-  disableElement(imageScaleBigger)
+  disableElement(imageScaleBigger);
 };
 
 function onPhotoUploadInputChange() {
