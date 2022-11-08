@@ -16,7 +16,8 @@ const picturesContainer = document.querySelector('.pictures'),
   effectLevelValue = photoUploadModal.querySelector('.effect-level__value'),
   errorMessageTemplate = document.querySelector('#error').content.querySelector('.error'),
   successMessageTemplate = document.querySelector('#success').content.querySelector('.success'),
-  submitButton = photoUploadForm.querySelector('.img-upload__submit');
+  submitButton = photoUploadForm.querySelector('.img-upload__submit'),
+  effectLevelField = photoUploadForm.querySelector('.img-upload__effect-level');
 
 export {
   picturesContainer,
@@ -37,5 +38,6 @@ export {
   effectLevelValue,
   errorMessageTemplate,
   successMessageTemplate,
-  submitButton
-}
+  submitButton,
+  effectLevelField
+};

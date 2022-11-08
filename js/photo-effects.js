@@ -1,7 +1,6 @@
-import { imagePreview, photoEffectsList, effectLevelSlider, effectLevelValue } from './dom-elements.js';
-import { empty, photoEffects } from './data.js' ;
+import {imagePreview, photoEffectsList, effectLevelValue, effectLevelSlider, effectLevelField} from './dom-elements.js';
+import { EMPTY, photoEffects } from './data.js' ;
 import { hideElement, showElement } from './util.js';
-
 
 noUiSlider.create(effectLevelSlider, {
   range: {
@@ -37,79 +36,74 @@ photoEffectsList.addEventListener('change', (evt) => {
       effectLevelValue.value = value;
     });
 
-    // Хром
-    if (evt.target.matches('#effect-chrome')) {
-      effectLevelSlider.noUiSlider.updateOptions({
-        range: {
-          min: 0,
-          max: 1,
-        },
-        start: 1,
-        step: 0.1,
-      });
+    // Изменение параметров слайдера в зависимости от выбранного эффекта
+    const effectId = evt.target.id;
+    switch (effectId) {
+      case 'effect-chrome':
+        effectLevelSlider.noUiSlider.updateOptions({
+          range: {
+            min: 0,
+            max: 1,
+          },
+          start: 1,
+          step: 0.1,
+        });
+        showElement(effectLevelField);
+        break;
+      case 'effect-sepia':
+        effectLevelSlider.noUiSlider.updateOptions({
+          range: {
+            min: 0,
+            max: 1,
+          },
+          start: 1,
+          step: 0.1,
+        });
+        showElement(effectLevelField);
+        break;
+      case 'effect-marvin':
+        effectLevelSlider.noUiSlider.updateOptions({
+          range: {
+            min: 0,
+            max: 100,
+          },
+          start: 100,
+          step: 1,
+        });
+        effectLevelSlider.noUiSlider.on('update', (value) => {
+          imagePreview.style.filter = `${photoEffects[evt.target.id][1]}(${value}%)`;
+        });
+        showElement(effectLevelField);
+        break;
+      case 'effect-phobos':
+        effectLevelSlider.noUiSlider.updateOptions({
+          range: {
+            min: 0,
+            max: 3,
+          },
+          start: 3,
+          step: 0.1,
+        });
+        effectLevelSlider.noUiSlider.on('update', (value) => {
+          imagePreview.style.filter = `${photoEffects[evt.target.id][1]}(${value}px)`;
+        });
+        showElement(effectLevelField);
+        break;
+      case 'effect-heat':
+        effectLevelSlider.noUiSlider.updateOptions({
+          range: {
+            min: 1,
+            max: 3,
+          },
+          start: 3,
+          step: 0.1,
+        });
+        showElement(effectLevelField);
+        break;
+      case 'effect-none':
+        imagePreview.style.filter = EMPTY;
+        hideElement(effectLevelField);
+        break;
     }
-
-    // Сепия
-    if (evt.target.matches('#effect-sepia')) {
-      effectLevelSlider.noUiSlider.updateOptions({
-        range: {
-          min: 0,
-          max: 1,
-        },
-        start: 1,
-        step: 0.1,
-      });
-    }
-
-    // Марвин
-    if (evt.target.matches('#effect-marvin')) {
-      effectLevelSlider.noUiSlider.updateOptions({
-        range: {
-          min: 0,
-          max: 100,
-        },
-        start: 100,
-        step: 1,
-      });
-      effectLevelSlider.noUiSlider.on('update', (value) => {
-        imagePreview.style.filter = `${photoEffects[evt.target.id][1]}(${value + '%'})`;
-      });
-    }
-
-    // Фобос
-    if (evt.target.matches('#effect-phobos')) {
-      effectLevelSlider.noUiSlider.updateOptions({
-        range: {
-          min: 0,
-          max: 3,
-        },
-        start: 3,
-        step: 0.1,
-      });
-      effectLevelSlider.noUiSlider.on('update', (value) => {
-        imagePreview.style.filter = `${photoEffects[evt.target.id][1]}(${value + 'px'})`;
-      });
-    }
-
-    // Зной
-    if (evt.target.matches('#effect-heat')) {
-      effectLevelSlider.noUiSlider.updateOptions({
-        range: {
-          min: 1,
-          max: 3,
-        },
-        start: 3,
-        step: 0.1,
-      });
-    }
-
-    // Оригинал
-    if (evt.target.matches('#effect-none')) {
-      imagePreview.style.filter = empty;
-      hideElement(effectLevelSlider);
-    } else {
-      showElement(effectLevelSlider);
-    }
-
   }
 });
