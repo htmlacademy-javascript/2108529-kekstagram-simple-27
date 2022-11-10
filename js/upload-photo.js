@@ -36,12 +36,7 @@ const clearCommentSymbolsCount = () => {
 const clearEffects = () => {
   const effects = photoEffectsList.querySelectorAll('.effects__radio');
   for (const effect of effects) {
-    if (effect.matches('#effect-none')) {
-      effect.setAttribute('checked', true);
-
-    } else {
-      effect.removeAttribute('checked');
-    }
+    effect.checked = effect.matches('#effect-none');
   }
   imagePreview.style.filter = EMPTY;
   imagePreview.className = EMPTY;
@@ -71,8 +66,7 @@ const resetPhotoUploadWindow = () => {
 function onPhotoUploadInputChange() {
 
   //Подставляем выбранное изображение в окно редактирования
-  const url = URL.createObjectURL(photoUploadInput.files[0]);
-  imagePreview.src = url;
+  imagePreview.src = URL.createObjectURL(photoUploadInput.files[0]);
 
   showElement(photoUploadModal);
   unlockSubmitButton();

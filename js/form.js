@@ -1,13 +1,9 @@
 import { checkStringLength, blockSubmitButton } from './util.js';
-import { onModalEscKeydown } from './upload-photo.js';
-
-import {
-  photoUploadForm,
-  commentField,
-  commentSymbolsCountOutput
-} from './dom-elements.js';
-
+import {photoUploadForm, commentField, commentSymbolsCountOutput} from './dom-elements.js';
 import { sendData } from './api.js';
+
+const MIN_COMMENT_LENGTH = 20;
+const MAX_COMMENT_LENGTH = 140;
 
 const pristine = new Pristine(photoUploadForm, {
   classTo: 'img-upload__text',
@@ -15,9 +11,6 @@ const pristine = new Pristine(photoUploadForm, {
   errorTextTag: 'span',
   errorTextClass: 'form__error'
 });
-
-const MIN_COMMENT_LENGTH = 20;
-const MAX_COMMENT_LENGTH = 140;
 
 // Валидация поля ввода комментария
 const validateComment = (value) => checkStringLength(value, MIN_COMMENT_LENGTH, MAX_COMMENT_LENGTH);
@@ -29,10 +22,6 @@ const onCommentFieldChange = () => {
 };
 
 commentField.addEventListener('input', onCommentFieldChange);
-
-// Отключаем esc при фокусе в поле комментария
-commentField.onfocus = () => document.removeEventListener('keydown', onModalEscKeydown);
-commentField.onblur = () => document.addEventListener('keydown', onModalEscKeydown);
 
 // Отправка формы
 photoUploadForm.addEventListener('submit', (evt) => {

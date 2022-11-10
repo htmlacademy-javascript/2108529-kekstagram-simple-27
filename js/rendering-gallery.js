@@ -1,7 +1,5 @@
 import { picturesContainer, pictureTemplate } from './dom-elements.js';
-import { getData } from './api.js'
-
-const posts = await getData();
+import { getData } from './api.js';
 
 const createPicture = ({ url, comments, likes }) => {
   const picture = pictureTemplate.cloneNode(true);
@@ -9,15 +7,17 @@ const createPicture = ({ url, comments, likes }) => {
   picture.querySelector('.picture__comments').textContent = comments;
   picture.querySelector('.picture__likes').textContent = likes;
   return picture;
-}
+};
 
 const renderPictures = (posts) => {
   const picturesGalleryFragment = document.createDocumentFragment();
   posts.forEach((post) => {
-    let picture = createPicture(post);
+    const picture = createPicture(post);
     picturesGalleryFragment.append(picture);
   });
   picturesContainer.append(picturesGalleryFragment);
-}
+};
 
-renderPictures(posts);
+getData()
+  .then((posts) => renderPictures(posts));
+

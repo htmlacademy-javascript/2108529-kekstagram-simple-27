@@ -1,4 +1,3 @@
-
 const EMPTY = '';
 
 const photoEffects = {
