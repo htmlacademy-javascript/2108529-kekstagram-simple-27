@@ -4,7 +4,6 @@ import {
   imageScaleSmaller,
   imageScaleBigger
 } from './dom-elements.js';
-
 import { disableElement, enableElement } from './util.js';
 
 const SCALE_STEP = 0.25;
