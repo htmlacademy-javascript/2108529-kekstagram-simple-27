@@ -6,7 +6,6 @@ import {
   commentField,
   commentSymbolsCountOutput,
   imagePreview,
-  photoEffectsList,
   effectLevelField,
   imageScaleSmaller,
   imageScaleBigger
@@ -24,8 +23,6 @@ import {
   disableElement
 } from './util.js';
 
-import { EMPTY } from './data.js';
-
 import { resetScaleValue, setControlValue } from './photo-scale.js';
 
 const clearCommentSymbolsCount = () => {
@@ -34,13 +31,11 @@ const clearCommentSymbolsCount = () => {
 };
 
 const clearEffects = () => {
-  const effects = photoEffectsList.querySelectorAll('.effects__radio');
-  for (const effect of effects) {
-    effect.checked = effect.matches('#effect-none');
-  }
-  imagePreview.style.filter = EMPTY;
-  imagePreview.className = EMPTY;
-  imagePreview.style.transform = EMPTY;
+  const effectNone = document.querySelector('#effect-none');
+  effectNone.checked = true;
+  imagePreview.style.filter = '';
+  imagePreview.className = '';
+  imagePreview.style.transform = '';
 };
 
 const removeErrorMessage = () => {
