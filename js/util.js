@@ -97,7 +97,7 @@ const showSuccessMessage = () => {
 };
 
 const blockSubmitButton = () => {
-  submitButton.setAttribute('disabled', true);
+  submitButton.setAttribute('disabled', 'true');
   submitButton.textContent = 'Отправляю...';
 };
 
